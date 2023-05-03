@@ -1,0 +1,29 @@
+<p style="color: green"><%= notice %></p>
+
+<%#= render @project %>
+
+
+
+    <p>
+      <strong>Conversation history:</strong>
+      <ul>
+        <% @project.comments.order(created_at: :asc).each do |comment| %>
+          <li><%= comment.content %> - <%= comment.created_at.to_formatted_s(:long) %></li>
+        <% end %>
+      </ul>
+    </p>
+  </div>
+    <br><hr><br>
+    <h2>Add a comment:</h2>
+    <%= render 'comments/form', comment: Comment.new, project: @project %>
+
+
+
+
+
+<div>
+  <%= link_to "Edit this project", edit_project_path(@project) %> |
+  <%= link_to "Back to projects", projects_path %>
+
+  <%= button_to "Destroy this project", @project, method: :delete %>
+</div>

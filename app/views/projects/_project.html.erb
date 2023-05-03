@@ -1,0 +1,32 @@
+<div id="<%= dom_id project %>">
+  <div class="project">
+    <div class="p-5 duration-300 transform bg-white border rounded shadow-sm hover:-translate-y-2">
+      <div class="flex items-center justify-center w-12 h-12 mb-4 rounded-full bg-indigo-50">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 text-amber-600" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+          <rect x="4" y="4" width="16" height="16" rx="2" />
+          <path d="M8 16v.01" />
+          <path d="M8 12v.01" />
+          <path d="M8 8v.01" />
+          <path d="M16 16v.01" />
+          <path d="M16 12v.01" />
+          <path d="M16 8v.01" />
+          <path d="M12 8v.01" />
+          <path d="M12 16v.01" />
+        </svg>
+      </div>
+      <h6 class="mb-4 font-semibold leading-5 text-indigo-700 underline">
+        <%=link_to project.title, project %>
+      </h6>
+      <p class="flex gap-2 text-sm text-gray-900">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-teal-600 iinline-block" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+          <path d="M3 12h5l4 8v-16l4 8h5" />
+        </svg>
+        <%= project.status&.humanize %>
+      </p>
+    </div>
+  </div>
+</div>
+
+

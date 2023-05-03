@@ -1,0 +1,26 @@
+<p style="color: green"><%= notice %></p>
+
+<article class="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
+  <div class="max-w-xl mb-10 md:mx-auto sm:text-center lg:max-w-2xl md:mb-12">
+    <h2 class="max-w-lg mb-6 font-sans text-3xl font-bold leading-none tracking-tight text-gray-900 sm:text-4xl md:mx-auto">
+      Homey Projects Home
+    </h2>
+    <p class="text-base text-gray-700 md:text-lg">
+      Project management made easy. Homey Projects Home is a simple project management tool that allows you to create projects and add comments to them.
+    </p>
+  </div>
+  <div id="projects">
+    <div class="grid gap-5 mb-8 md:grid-cols-2 lg:grid-cols-3">
+      <% @projects.each do |project| %>
+        <%= render project %>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="text-center">
+    <%=link_to new_project_path, class: "inline-flex items-center justify-center w-full h-12 px-6 font-medium tracking-wide text-white transition duration-200 bg-indigo-400 rounded shadow-md md:w-auto hover:bg-indigo-700 focus:shadow-outline focus:outline-none" do %>
+      Add a new project
+    <% end %>
+  </div>
+
+</article>
