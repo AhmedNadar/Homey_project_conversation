@@ -12,7 +12,7 @@
           <%= @project.title %>
         </p>
         <span class="font-medium text-gray-400 transition-colors duration-200 hover:text-gray-700">
-          <%= @project.status.humanize %>
+          <%= @project.status.humanize %> <%= status_emoji(@project.status) %>
         </span>
 
       </div>

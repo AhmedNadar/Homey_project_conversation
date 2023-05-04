@@ -18,12 +18,13 @@
       <h6 class="mb-4 font-semibold leading-5 text-indigo-700 underline">
         <%= link_to project.title, project %>
       </h6>
-      <p class="flex gap-2 text-sm text-gray-900">
-        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-teal-600 iinline-block" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <p class="flex gap-2 text-sm text-gray-700">
+        <svg xmlns="http://www.w3.org/2000/svg" class="hidden w-5 h-5 text-teal-600 iinline-block" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
           <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
           <path d="M3 12h5l4 8v-16l4 8h5" />
         </svg>
         <%= project.status&.humanize %>
+        <%= status_emoji(project.status) %>
       </p>
     </div>
   </div>
