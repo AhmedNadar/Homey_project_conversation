@@ -1,29 +1,83 @@
 <p style="color: green"><%= notice %></p>
+<div class="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
+  <div class="grid gap-10 row-gap-8 lg:grid-cols-12">
+    <div class="lg:col-span-6">
+      <p class="mb-6 text-xs font-semibold tracking-wide ">
+        <span class="mr-1 text-indigo-600 underline">&#x2190; <%= link_to "Back to projects", projects_path%></span>
+        &#8231;
+        <span class="ml-1 text-gray-600 uppercase"><%=@project.created_at.strftime("%b %d, %Y") %></span>
+      </p>
+      <div class="mb-10">
+        <p class="mb-2 text-xl font-extrabold leading-none tracking-tight lg:text-4xl xl:text-5xl">
+          <%= @project.title %>
+        </p>
+        <span class="font-medium text-gray-400 transition-colors duration-200 hover:text-gray-700">
+          <%= @project.status.humanize %>
+        </span>
 
-<%#= render @project %>
-
-
-
-    <p>
-      <strong>Conversation history:</strong>
-      <ul>
+      </div>
+      <div class="flex items-center">
+        <a href="#" aria-label="Author" class="mr-3">
+          <img alt="avatar" src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260" class="object-cover w-10 h-10 rounded-full shadow-sm" />
+        </a>
+        <div>
+          <span class="text-sm font-light text-gray-400 transition-colors duration-200 hover:text-indigo-400">
+            <%= @project.user.email %>
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class="flex flex-col space-y-8 lg:col-span-6">
+      <div class="px-4 py-6 bg-gray-100 border border-gray-200 rounded-lg">
+        <p class="text-xl font-semibold text-gray-500">Conversation</p>
+      </div>
         <% @project.comments.order(created_at: :asc).each do |comment| %>
-          <li><%= comment.content %> - <%= comment.created_at.to_formatted_s(:long) %></li>
-        <% end %>
-      </ul>
-    </p>
+        <div>
+          <p class="mb-2 text-xs font-semibold tracking-wide text-gray-600 uppercase">
+            <%= comment.created_at.to_formatted_s(:long) %>
+          </p>
+          <p class="mb-4 text-base text-gray-700 md:text-lg">
+            <%= comment.content %>
+          </p>
+          <div class="flex items-center">
+            <a href="#" aria-label="Author" class="mr-3">
+              <img alt="avatar" src="https://images.pexels.com/photos/91227/pexels-photo-91227.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260" class="object-cover w-10 h-10 rounded-full shadow-sm" />
+            </a>
+            <div>
+              <span class="text-sm font-thin text-gray-300 transition-colors duration-200 hover:text-indigo-400"><%= comment.user.email %></span>
+            </div>
+          </div>
+        </div>
+      <% end %>
+
+    </div>
+
   </div>
-    <br><hr><br>
-    <h2>Add a comment:</h2>
-    <%= render 'comments/form', comment: Comment.new, project: @project %>
 
+  <hr class="hr">
+  <!-- comments -->
+  <div class="flex flex-col space-y-8 lg:col-span-6">
+    <div class="px-4 py-6 bg-gray-100 border border-gray-200 rounded-lg">
+      <p class="text-xl font-semibold text-gray-500">Join the Conversation</p>
+    </div>
+    <% if !signed_in? %>
+      <p class="text-xl font-semibold text-gray-500">Please <%= link_to "sign in", new_user_session_path %> to comment</p>
+    <% else %>
+      <%= render 'comments/form', comment: Comment.new, project: @project %>
+    <% end %>
+  </div>
+    <hr class="hr">
+  <div>
+    <% if current_user == @project.user %>
+      <!-- admin area-->
+      <div class="p-3 text-xl bg-yellow-200 border border-t border-yellow-500 rounded-lg">
+        <span class="font-medium text-gray-500 ">Admin Area</span>
+        <div class="flex gap-4 mt-4 text-sm text-white">
+          <span class="p-2 bg-teal-500 rounded-md"><%= link_to "Edit this project", edit_project_path(@project) %></span>
+          <span class="p-2 bg-pink-500 rounded-md"><%= button_to "Destroy this project", @project, method: :delete %></span>
+        </div>
+      </div>
+    <% end %>
+  </div>
 
-
-
-
-<div>
-  <%= link_to "Edit this project", edit_project_path(@project) %> |
-  <%= link_to "Back to projects", projects_path %>
-
-  <%= button_to "Destroy this project", @project, method: :delete %>
 </div>

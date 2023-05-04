@@ -11,13 +11,16 @@
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :content, style: "display: block" %>
-    <%= form.text_area :content %>
+  <div class="relative w-full mb-3">
+    <%= form.label :content, class:"block mb-2 ml-1 text-xs font-bold uppercase text-gray-500" %>
+    <div class="pt-0 mb-3">
+      <%= form.text_area :content, class:"relative w-full px-3 py-2 text-sm placeholder-gray-200 transition duration-200 bg-white border border-gray-300 border-solid rounded-md outline-none focus:ring-lightBlue-500 focus:ring-1 focus:border-lightBlue-500", rows:"4", placeholder: "Add comment" %>
+    </div>
   </div>
 
   <div>
-    <%= form.submit %>
+    <%= form.submit class:"inline-flex items-center justify-center w-full h-12 px-6 font-medium tracking-wide text-white transition duration-200 bg-indigo-400 rounded shadow-md md:w-auto hover:bg-indigo-700 focus:shadow-outline focus:outline-none" %>
   </div>
 <% end %>
+
 

@@ -1,3 +1,10 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+html {
+  @apply relative max-w-full min-h-full text-base font-normal leading-normal text-left text-gray-800;
+}
+.hr {
+  @apply my-6 border-0 border-t border-gray-200 border-solid;
+}
