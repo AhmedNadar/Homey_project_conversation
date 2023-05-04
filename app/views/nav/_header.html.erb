@@ -1,0 +1,19 @@
+<!-- header -->
+<header class="sticky inset-x-0 top-0 z-50 bg-white shadow-md">
+<%# <header class="w-full p-4 text-center border-b border-grey"> %>
+  <div class="max-w-screen-xl px-4 mx-auto">
+    <div class="flex items-center justify-between h-16">
+      <div class="flex items-center">
+        <%= link_to root_path, class: "text-base inline-flex gap-1.5 text-sm font-medium hover:text-gray-700" do %>
+          <span>Homey Projects Conversation</span>
+        <% end %>
+        <span aria-hidden="true" class="hidden mx-4 sm:block sm:h-6 sm:w-px sm:bg-gray-100"></span>
+      </div>
+      <% if user_signed_in? %>
+        <%= render "nav/authenticated" %>
+      <% else %>
+        <%= render "nav/unauthenticated" %>
+      <% end %>
+    </div>
+  </div>
+</header>

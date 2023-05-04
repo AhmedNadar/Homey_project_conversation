@@ -1,0 +1,72 @@
+<div class="project">
+  <h2 class="mb-4 text-xl font-extrabold leading-none tracking-tight lg:text-4xl xl:text-5xl">Dashboard</h2>
+
+<div class="w-full mx-auto mt-2">
+  <div class="flex flex-wrap">
+  <div class="w-full">
+    <div class="relative flex flex-col w-full min-w-0 mb-8 text-gray-700 break-words bg-white rounded-lg shadow-lg">
+      <div class="px-6 py-4 border-0">
+        <div class="flex flex-wrap items-center">
+          <div class="relative flex-1 flex-grow w-full max-w-full">
+            <h3 class="text-lg font-bold text-gray-700">Projects Table</h3>
+          </div>
+        </div>
+      </div>
+      <div class="block w-full overflow-scrool">
+        <table class="items-center w-full bg-transparent border-collapse">
+          <thead>
+            <tr>
+              <th class="px-6 py-3 text-sm font-bold text-left text-gray-500 uppercase align-middle bg-gray-100 border border-l-0 border-r-0 border-gray-200 border-solid whitespace-nowrap">Project</th>
+              <th class="px-6 py-3 text-sm font-bold text-left text-gray-500 uppercase align-middle bg-gray-100 border border-l-0 border-r-0 border-gray-200 border-solid whitespace-nowrap">status</th>
+              <th class="px-6 py-3 text-sm font-bold text-left text-gray-500 uppercase align-middle bg-gray-100 border border-l-0 border-r-0 border-gray-200 border-solid whitespace-nowrap">Date</th>
+              <th class="px-6 py-3 text-sm font-bold text-left text-gray-500 uppercase align-middle bg-gray-100 border border-l-0 border-r-0 border-gray-200 border-solid whitespace-nowrap">Admin</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @projects.each do |project| %>
+              <tr>
+                <td class="p-4 px-6 text-sm align-middle border-t-0 border-l-0 border-r-0 whitespace-nowrap">
+                  <div class="flex items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="inline-block w-6 h-6 text-amber-600" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                      <rect x="4" y="4" width="16" height="16" rx="2" />
+                      <path d="M8 16v.01" />
+                      <path d="M8 12v.01" />
+                      <path d="M8 8v.01" />
+                      <path d="M16 16v.01" />
+                      <path d="M16 12v.01" />
+                      <path d="M16 8v.01" />
+                      <path d="M12 8v.01" />
+                      <path d="M12 16v.01" />
+                    </svg>
+                  <span class="ml-1 font-bold NaN"><%= link_to project.title, project %></span></div>
+                </td>
+                <td class="p-4 px-6 text-sm align-middle border-t-0 border-l-0 border-r-0 whitespace-nowrap">
+                  <div class="flex items-center"><%= status_emoji(project.status) %> <%= project.status&.humanize %></div>
+                </td>
+                <td class="p-4 px-6 text-sm align-middle border-t-0 border-l-0 border-r-0 whitespace-nowrap">
+                  <div class="flex items-center"><%= project.created_at.strftime("%b %d, %Y") %></div>
+                </td>
+
+                <td class="p-4 px-6 pb-6 pl-6 text-sm text-right align-middle border-t-0 border-l-0 border-r-0 whitespace-nowrap">
+                  <div class="relative">
+                    <div class="z-50 block">
+                      <div class="flex justify-end gap-4 text-center ">
+                        <%= link_to "EDIT", edit_project_path(project),
+                          class:"block w-full px-3 py-2 text-sm transition-all duration-100 bg-teal-600 text-white rounded whitespace-nowrap hover:bg-teal-400 font-semibold" %>
+                        <%= link_to "DELETE", project_path(project),
+                          "data-turbo-method": :delete,
+                          "data-turbo-confirm": "Deleting this project can't be undone. Are you sure?",
+                          class:"block w-full px-3 py-2 text-sm transition-all duration-100 bg-pink-600 rounded whitespace-nowrap hover:bg-pink-400 text-white font-semibold" %>
+                      </div>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

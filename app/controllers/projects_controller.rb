@@ -4,7 +4,11 @@ class ProjectsController < ApplicationController
 
   # GET /projects
   def index
-    @projects = Project.all
+    if user_signed_in?
+      @projects = current_user.projects.in_progress
+    else
+      @projects = Project.completed
+    end
   end
 
   # GET /projects/1

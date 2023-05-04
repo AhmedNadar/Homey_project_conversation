@@ -61,7 +61,7 @@
       <p class="text-xl font-semibold text-gray-500">Join the Conversation</p>
     </div>
     <% if !signed_in? %>
-      <p class="text-xl font-semibold text-gray-500">Please <%= link_to "sign in", new_user_session_path %> to comment</p>
+      <p class="text-xl font-semibold text-gray-500">Please <%= link_to "sign in", new_user_session_path, class:"underline text-indigo-500" %> to comment</p>
     <% else %>
       <%= render 'comments/form', comment: Comment.new, project: @project %>
     <% end %>

@@ -6,4 +6,9 @@ class Project < ApplicationRecord
 
   validates :title, presence: true
   validates :status, presence: true
+
+  scope :pending,     -> { where(status: :pending) }
+  scope :in_progress, -> { where(status: :in_progress) }
+  scope :completed,   -> { where(status: :completed) }
+  scope :cancelled,   -> { where(status: :cancelled) }
 end
